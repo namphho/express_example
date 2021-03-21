@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const formidable = require('formidable');
 const fs = require("fs");
 const path = require('path')
+let userRouter = require('./modules/users/user_route');
+let projectRouter = require('./modules/project/project_route')
 
 //define variable
 const app = express()
@@ -101,6 +103,8 @@ app.post('/upload', (req, res) => {
 
 
 app.use('/files', express.static('public'))
+app.use('/user', userRouter)
+app.use('/project', projectRouter)
 
 //start server
 app.listen(port, () => {
